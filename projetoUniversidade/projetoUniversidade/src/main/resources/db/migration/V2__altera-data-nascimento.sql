@@ -1,0 +1,1 @@
+alter table alunos CHANGE COLUMN dataNascimento data_nascimento varchar(15) not null;
