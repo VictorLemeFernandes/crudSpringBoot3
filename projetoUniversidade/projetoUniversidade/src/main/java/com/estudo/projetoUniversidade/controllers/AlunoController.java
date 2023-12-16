@@ -4,6 +4,7 @@ import com.estudo.projetoUniversidade.domain.alunos.Aluno;
 import com.estudo.projetoUniversidade.domain.alunos.AlunoRepository;
 import com.estudo.projetoUniversidade.domain.alunos.DadosCadastroAluno;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AlunoController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody DadosCadastroAluno dados) {
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroAluno dados) {
         var aluno = new Aluno(dados);
         repository.save(aluno);
 

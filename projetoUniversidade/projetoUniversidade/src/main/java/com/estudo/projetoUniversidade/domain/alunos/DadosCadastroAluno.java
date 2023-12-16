@@ -11,10 +11,9 @@ public record DadosCadastroAluno(
         String matricula,
 
         @NotBlank
-        @Pattern(regexp = "\\d{2}\\./?\\d{2}\\./?\\d{4}")
+        @Pattern(regexp = "\\d{2}/?\\d{2}/?\\d{4}")
         String data_nascimento,
 
         @NotBlank
         String curso
-) {
-}
+) { }
