@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/alunos")
+@RequestMapping("alunos")
 public class AlunoController {
     @Autowired
     private AlunoRepository repository;
@@ -40,5 +40,15 @@ public class AlunoController {
         aluno.atualizaDados(dados);
 
         return ResponseEntity.ok(new DetalhamentoAluno(aluno));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
+        var aluno = repository.findById(id).map(DetalhamentoAluno::new);
+
+        repository.deleteById(id);
+
+        return ResponseEntity.ok(aluno);
     }
 }
