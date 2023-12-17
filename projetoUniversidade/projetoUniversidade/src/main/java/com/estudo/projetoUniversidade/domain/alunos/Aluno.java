@@ -22,10 +22,28 @@ public class Aluno {
     private String data_nascimento;
     private String curso;
 
+
     public Aluno(DadosCadastroAluno dados) {
         this.nome = dados.nome();
         this.matricula = dados.matricula();
         this.data_nascimento = dados.data_nascimento();
         this.curso = dados.curso();
     }
+
+
+    public void atualizaDados(DadosAtualizaAluno dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.curso() != null) {
+            this.curso = dados.curso();
+        }
+        if (dados.matricula() != null) {
+            this.matricula = dados.matricula();
+        }
+        if (dados.data_nascimento() != null) {
+            this.data_nascimento = dados.data_nascimento();
+        }
+    }
+
 }

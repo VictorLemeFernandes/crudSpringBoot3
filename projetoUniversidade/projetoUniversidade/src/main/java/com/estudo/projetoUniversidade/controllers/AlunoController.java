@@ -1,9 +1,6 @@
 package com.estudo.projetoUniversidade.controllers;
 
-import com.estudo.projetoUniversidade.domain.alunos.Aluno;
-import com.estudo.projetoUniversidade.domain.alunos.AlunoRepository;
-import com.estudo.projetoUniversidade.domain.alunos.DadosCadastroAluno;
-import com.estudo.projetoUniversidade.domain.alunos.DadosListagemAluno;
+import com.estudo.projetoUniversidade.domain.alunos.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +30,15 @@ public class AlunoController {
         var pagina = repository.findAll(paginacao).map(DadosListagemAluno::new);
 
         return ResponseEntity.ok(pagina);
+    }
+
+    @Transactional
+    @PutMapping
+    public ResponseEntity<?> atualizar(@RequestBody @Valid DadosAtualizaAluno dados) {
+        var aluno = repository.getReferenceById(dados.id());
+
+        aluno.atualizaDados(dados);
+
+        return ResponseEntity.ok(new DetalhamentoAluno(aluno));
     }
 }
